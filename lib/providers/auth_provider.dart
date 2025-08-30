@@ -1,4 +1,3 @@
-// lib/providers/auth_provider.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -12,7 +11,6 @@ class AuthProvider with ChangeNotifier {
   String? _name;
   String? _email;
   bool _isInitialized = false;
-
   String? _lastOrderId;
 
   // 🔹 Getters
@@ -72,11 +70,11 @@ class AuthProvider with ChangeNotifier {
         notifyListeners();
         return true;
       } else {
-        print("Login failed: ${res.body}");
+        debugPrint("Login failed: ${res.body}");
         return false;
       }
     } catch (e) {
-      print("Login error: $e");
+      debugPrint("Login error: $e");
       return false;
     }
   }
@@ -84,7 +82,7 @@ class AuthProvider with ChangeNotifier {
   // ✅ Signup
   Future<bool> signup(String name, String email, String password) async {
     try {
-      final url = Uri.parse("${dotenv.env['API_BASE_URL']}/api/auth/register");
+      final url = Uri.parse("${dotenv.env['API_BASE_URL']}/auth/register");
 
       final res = await http.post(
         url,
@@ -108,17 +106,17 @@ class AuthProvider with ChangeNotifier {
         notifyListeners();
         return true;
       } else {
-        print("Signup failed: ${res.body}");
+        debugPrint("Signup failed: ${res.body}");
         return false;
       }
     } catch (e) {
-      print("Signup error: $e");
+      debugPrint("Signup error: $e");
       return false;
     }
   }
 
   // ✅ Logout
-  void logout() async {
+  Future<void> logout() async {
     _isAuthenticated = false;
     _token = null;
     _userId = null;

@@ -1,3 +1,4 @@
+import 'package:LideWear/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,9 +19,10 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
   bool _isLoading = false;
 
-  void _signupUser() async {
+  Future<void> _signupUser() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     final name = _nameController.text.trim();
     final email = _emailController.text.trim();
@@ -47,12 +49,12 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() => _isLoading = true);
 
     try {
-      await authProvider.signup(name, email, password);
+      bool success = await authProvider.signup(name, email, password);
 
-      if (authProvider.isAuthenticated) {
+      if (success) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          MaterialPageRoute(builder: (_) => const MainScreen()),
         );
       } else {
         ScaffoldMessenger.of(
@@ -91,6 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 40),
 
+              // 🔹 Full Name
               TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
@@ -103,6 +106,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 20),
 
+              // 🔹 Email
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -115,6 +119,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 20),
 
+              // 🔹 Password
               TextField(
                 controller: _passwordController,
                 obscureText: true,
@@ -128,6 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 20),
 
+              // 🔹 Confirm Password
               TextField(
                 controller: _confirmPasswordController,
                 obscureText: true,
@@ -142,6 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
               const SizedBox(height: 24),
 
+              // 🔹 Signup button
               ElevatedButton(
                 onPressed: _isLoading ? null : _signupUser,
                 style: ElevatedButton.styleFrom(
@@ -158,6 +165,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
               const SizedBox(height: 16),
 
+              // 🔹 Already have an account
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
