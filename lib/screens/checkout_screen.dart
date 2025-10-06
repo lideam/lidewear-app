@@ -16,7 +16,7 @@ class CheckoutScreen extends StatefulWidget {
 class _CheckoutScreenState extends State<CheckoutScreen> {
   final OrderService _orderService = OrderService();
   String? checkoutUrl;
-  String? txRef; // 👈 store transaction reference
+  String? txRef;
   bool isLoading = false;
 
   late final WebViewController _controller;
@@ -29,16 +29,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onNavigationRequest: (navReq) async {
-            // 👀 detect success page
             if (navReq.url.contains("/success")) {
               final auth = Provider.of<AuthProvider>(context, listen: false);
 
               try {
-                // ✅ Verify & update order after success
                 await _orderService.verifyPayment(
                   auth.token!,
-                  auth.lastOrderId!, // you can save last orderId in AuthProvider
-                  txRef!, // tx_ref from initiatePayment
+                  auth.lastOrderId!,
+                  txRef!,
                 );
 
                 if (mounted) {
@@ -68,29 +66,25 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final auth = Provider.of<AuthProvider>(context, listen: false);
 
     try {
-      // Step 1: Create order
       Order order = await _orderService.createOrder(
         auth.token!,
         cart.items.values.toList(),
         cart.totalAmount,
       );
 
-      // Save last order ID in auth (or state mgmt)
       auth.lastOrderId = order.id;
 
-      // Step 2: Init payment
       final paymentInit = await _orderService.initiatePayment(
         auth.token!,
         order.id,
       );
 
       setState(() {
-        checkoutUrl = paymentInit["checkout_url"]; // 👈 fix here
-        txRef = paymentInit["tx_ref"]; // 👈 save tx_ref
+        checkoutUrl = paymentInit["checkout_url"];
+        txRef = paymentInit["tx_ref"];
         isLoading = false;
       });
 
-      // ✅ Load WebView
       _controller.loadRequest(Uri.parse(checkoutUrl!));
     } catch (e) {
       setState(() => isLoading = false);

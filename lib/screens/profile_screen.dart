@@ -19,7 +19,6 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔹 User Info
             Center(
               child: Column(
                 children: [
@@ -47,7 +46,6 @@ class ProfileScreen extends StatelessWidget {
 
             const SizedBox(height: 32),
 
-            // 🔹 Appearance
             Text('Appearance', style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 12),
             Row(
@@ -65,7 +63,6 @@ class ProfileScreen extends StatelessWidget {
 
             const Spacer(),
 
-            // 🔹 Logout button
             if (auth.isLoggedIn)
               Center(
                 child: ElevatedButton.icon(

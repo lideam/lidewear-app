@@ -6,7 +6,6 @@ import 'package:LideWear/models/cart_item.dart';
 class OrderService {
   final String baseUrl = "https://c8aa2993ef26.ngrok-free.app/api/orders";
 
-  /// Create an order
   Future<Order> createOrder(
     String token,
     List<CartItem> items,
@@ -22,7 +21,7 @@ class OrderService {
         "items": items
             .map(
               (item) => {
-                "product": item.productId, // backend expects `product`
+                "product": item.productId,
                 "quantity": item.quantity,
                 "price": item.price,
               },
@@ -69,7 +68,6 @@ class OrderService {
     }
   }
 
-  /// Verify & confirm payment (client-side)
   Future<Order> verifyPayment(
     String token,
     String orderId,
@@ -82,7 +80,7 @@ class OrderService {
         "Content-Type": "application/json",
       },
       body: jsonEncode({
-        "status": "success", // ✅ force success for testing
+        "status": "success",
         "method": "Chapa",
         "tx_ref": txRef,
       }),
@@ -96,11 +94,9 @@ class OrderService {
     }
   }
 
-  /// ✅ Fetch all orders for logged-in user
   Future<List<Order>> fetchUserOrders(String token) async {
     final response = await http.get(
-      Uri.parse("http://10.28.202.76:5000/api/orders"), // for Android Emulator
-      // or use your local network IP if testing on real device, e.g. http://192.168.1.5:5000/api/orders
+      Uri.parse("http://10.28.202.76:5000/api/orders"),
       headers: {"Authorization": "Bearer $token"},
     );
 

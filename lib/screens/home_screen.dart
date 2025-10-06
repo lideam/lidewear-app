@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _searchController = TextEditingController();
-  String? selectedCategory = 'All'; // instead of null
+  String? selectedCategory = 'All';
 
   SortOption? selectedSort;
 
@@ -141,9 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                           onChanged: (value) {
                             setState(() => selectedCategory = value);
-                            productProvider.filterByCategory(
-                              value,
-                            ); // sends 'All' if that's selected
+                            productProvider.filterByCategory(value);
                           },
                         ),
 

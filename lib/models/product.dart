@@ -42,7 +42,6 @@ class Product {
     );
   }
 
-  // ✅ Add this
   void toggleFavoriteStatus() {
     isFavorite = !isFavorite;
   }

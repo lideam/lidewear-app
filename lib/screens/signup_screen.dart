@@ -93,7 +93,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 40),
 
-              // 🔹 Full Name
               TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
@@ -106,7 +105,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 20),
 
-              // 🔹 Email
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -119,7 +117,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 20),
 
-              // 🔹 Password
               TextField(
                 controller: _passwordController,
                 obscureText: true,
@@ -133,7 +130,6 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               const SizedBox(height: 20),
 
-              // 🔹 Confirm Password
               TextField(
                 controller: _confirmPasswordController,
                 obscureText: true,
@@ -148,7 +144,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
               const SizedBox(height: 24),
 
-              // 🔹 Signup button
               ElevatedButton(
                 onPressed: _isLoading ? null : _signupUser,
                 style: ElevatedButton.styleFrom(
@@ -165,7 +160,6 @@ class _SignupScreenState extends State<SignupScreen> {
 
               const SizedBox(height: 16),
 
-              // 🔹 Already have an account
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 class CartItem {
-  final String cartItemId; // Backend cart item _id
-  final String productId; // Product's _id
+  final String cartItemId;
+  final String productId;
   final String name;
   final int quantity;
   final double price;
@@ -17,12 +17,7 @@ class CartItem {
     required this.imageUrl,
   });
 
-  // ✅ Convert CartItem → JSON for backend order request
   Map<String, dynamic> toJson() {
-    return {
-      "product": productId, // backend only needs product ID
-      "quantity": quantity,
-      "price": price,
-    };
+    return {"product": productId, "quantity": quantity, "price": price};
   }
 }

@@ -1,6 +1,6 @@
 class OrderItem {
   final String id;
-  final String product; // product id
+  final String product;
   final int quantity;
   final double price;
 
@@ -39,7 +39,7 @@ class Order {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime? paidAt;
-  final Map<String, dynamic>? paymentResult; // optional
+  final Map<String, dynamic>? paymentResult;
 
   Order({
     required this.id,

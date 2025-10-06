@@ -17,7 +17,6 @@ class ProductDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 📸 Product Image
             AspectRatio(
               aspectRatio: 1,
               child: Image.network(
@@ -31,7 +30,6 @@ class ProductDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // 📦 Info Card
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Card(
@@ -55,7 +53,6 @@ class ProductDetailScreen extends StatelessWidget {
 
                       const SizedBox(height: 8),
 
-                      // 💰 Price
                       Text(
                         '\$${product.price.toStringAsFixed(2)}',
                         style: const TextStyle(
@@ -67,7 +64,6 @@ class ProductDetailScreen extends StatelessWidget {
 
                       const SizedBox(height: 8),
 
-                      // ⭐ Rating
                       Row(
                         children: List.generate(5, (index) {
                           return Icon(
@@ -82,7 +78,6 @@ class ProductDetailScreen extends StatelessWidget {
 
                       const SizedBox(height: 16),
 
-                      // 🧾 Description
                       Text(
                         product.description,
                         style: const TextStyle(
@@ -93,7 +88,6 @@ class ProductDetailScreen extends StatelessWidget {
 
                       const SizedBox(height: 24),
 
-                      // 🛒 Add to Cart Button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton.icon(
@@ -107,7 +101,6 @@ class ProductDetailScreen extends StatelessWidget {
                             );
                             final token = auth.token;
 
-                            // 🔹 Ensure token is not null or empty
                             if (token == null || token.isEmpty) {
                               messenger.showSnackBar(
                                 const SnackBar(
@@ -122,10 +115,7 @@ class ProductDetailScreen extends StatelessWidget {
                               await Provider.of<CartProvider>(
                                 context,
                                 listen: false,
-                              ).addToCart(
-                                product.id,
-                                token,
-                              ); // ✅ token is now String
+                              ).addToCart(product.id, token);
                               messenger.showSnackBar(
                                 const SnackBar(content: Text('Added to cart!')),
                               );
@@ -157,7 +147,6 @@ class ProductDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // 🗣️ Reviews Section (static for now)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -179,7 +168,6 @@ class ProductDetailScreen extends StatelessWidget {
                     comment: "Absolutely love this. Worth every penny.",
                   ),
                   const SizedBox(height: 16),
-                  // Later: Add button to submit a review
                 ],
               ),
             ),

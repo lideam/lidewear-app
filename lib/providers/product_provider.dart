@@ -19,11 +19,9 @@ class ProductProvider with ChangeNotifier {
   List<Product> get favoriteProducts =>
       _products.where((product) => product.isFavorite).toList();
 
-  // 🧠 Full filter + sort logic
   List<Product> get filteredAndSortedProducts {
     List<Product> filtered = [..._products];
 
-    // 1️⃣ Filter by category
     if (_selectedCategory != null &&
         _selectedCategory!.isNotEmpty &&
         _selectedCategory != 'All') {
@@ -32,7 +30,6 @@ class ProductProvider with ChangeNotifier {
           .toList();
     }
 
-    // 2️⃣ Filter by search
     if (_searchQuery.isNotEmpty) {
       filtered = filtered
           .where(
@@ -42,7 +39,6 @@ class ProductProvider with ChangeNotifier {
           .toList();
     }
 
-    // 3️⃣ Sort
     switch (_selectedSort) {
       case SortOption.priceAsc:
         filtered.sort((a, b) => a.price.compareTo(b.price));

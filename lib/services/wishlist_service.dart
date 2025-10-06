@@ -4,7 +4,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/product.dart';
 
 class WishlistService {
-  // Use .env variable
   final String baseUrl = "${dotenv.env['API_BASE_URL']}/wishlist";
 
   Future<List<Product>> getWishlist(String token) async {

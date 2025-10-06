@@ -6,7 +6,6 @@ import '../models/cart_item.dart';
 class CartService {
   final String _baseUrl = dotenv.env['API_BASE_URL']!;
 
-  /// ✅ Fetch cart items from backend
   Future<List<CartItem>> fetchCart(String token) async {
     final url = Uri.parse("$_baseUrl/cart");
     final res = await http.get(
@@ -36,7 +35,6 @@ class CartService {
     }
   }
 
-  /// ✅ Add product to cart
   Future<void> addToCart(String productId, String token) async {
     final url = Uri.parse("$_baseUrl/cart");
     final res = await http.post(
@@ -53,7 +51,6 @@ class CartService {
     }
   }
 
-  /// ✅ Remove item from cart
   Future<void> removeFromCart(String cartItemId, String token) async {
     final url = Uri.parse("$_baseUrl/cart/$cartItemId");
     final res = await http.delete(
@@ -66,7 +63,6 @@ class CartService {
     }
   }
 
-  /// ✅ Clear entire cart
   Future<void> clearCart(String token) async {
     final url = Uri.parse("$_baseUrl/cart/clear");
     final res = await http.delete(

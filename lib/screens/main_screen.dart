@@ -3,7 +3,7 @@ import 'home_screen.dart';
 import 'favorites_screen.dart';
 import 'cart_screen.dart';
 import 'profile_screen.dart';
-import 'my_orders_screen.dart'; // 👈 import your orders screen
+import 'my_orders_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     FavoritesScreen(),
     CartScreen(),
-    MyOrdersScreen(), // 👈 added here
+    MyOrdersScreen(),
     ProfileScreen(),
   ];
 
@@ -49,10 +49,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
-            label: 'Orders',
-          ), // 👈 new tab
+          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Orders'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),

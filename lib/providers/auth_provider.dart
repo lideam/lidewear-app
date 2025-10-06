@@ -13,7 +13,6 @@ class AuthProvider with ChangeNotifier {
   bool _isInitialized = false;
   String? _lastOrderId;
 
-  // 🔹 Getters
   bool get isAuthenticated => _isAuthenticated;
   String? get token => _token;
   String? get userId => _userId;
@@ -28,7 +27,6 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // ✅ Restore session
   Future<void> restoreSession() async {
     final prefs = await SharedPreferences.getInstance();
     _token = prefs.getString("token");
@@ -43,7 +41,6 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // ✅ Login
   Future<bool> login(String email, String password) async {
     try {
       final url = Uri.parse("${dotenv.env['API_BASE_URL']}/auth/login");
@@ -79,7 +76,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  // ✅ Signup
   Future<bool> signup(String name, String email, String password) async {
     try {
       final url = Uri.parse("${dotenv.env['API_BASE_URL']}/auth/register");
@@ -115,7 +111,6 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  // ✅ Logout
   Future<void> logout() async {
     _isAuthenticated = false;
     _token = null;

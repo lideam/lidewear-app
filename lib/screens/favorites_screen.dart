@@ -4,7 +4,7 @@ import '../providers/wishlist_provider.dart';
 import '../widgets/product_card.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({super.key}); // ✅ added super.key constructor
+  const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

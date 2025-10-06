@@ -106,10 +106,7 @@ class _CartScreenState extends State<CartScreen> {
                             context,
                             listen: false,
                           );
-                          cart.removeItem(
-                            item.cartItemId, // backend _id
-                            auth.token!, // ✅ only 2 args now
-                          );
+                          cart.removeItem(item.cartItemId, auth.token!);
                         },
                       ),
                     ],

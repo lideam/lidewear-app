@@ -90,7 +90,6 @@ class ProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // ❤️ Wishlist button
                   IconButton(
                     icon: Icon(
                       isInWishlist ? Icons.favorite : Icons.favorite_border,
@@ -116,7 +115,6 @@ class ProductCard extends StatelessWidget {
                     constraints: const BoxConstraints(),
                   ),
 
-                  // 🛒 Cart button
                   IconButton(
                     icon: const Icon(Icons.add_shopping_cart),
                     onPressed: () async {
